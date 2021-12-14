@@ -1,0 +1,23 @@
+snippet > "Self Closing tag"
+<$1 />
+endsnippet
+
+snippet >> "Open Close tag"
+<$1>
+	$2
+</$1>
+endsnippet
+
+snippet rfc "React Functional Component With Styled Components" 
+import React from "react"
+import styled from "styled-components"
+
+export default function $1 (){
+	return (
+		<$1Container>
+		</$1Container>
+	)
+}
+
+const $1Container = styled.div``
+endsnippet

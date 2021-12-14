@@ -1,0 +1,14 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
+	"snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+	"javascript.suggest.autoImports": true, 
+	"typescript.suggest.autoImports": true
+}
+
