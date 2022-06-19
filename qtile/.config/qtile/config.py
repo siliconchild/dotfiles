@@ -35,22 +35,22 @@ terminal = 'alacritty'
 
 keys = [
     # Switch between windows
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(),
-        desc="Move window focus to other window"),
+    #Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    #Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    #Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+    #Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    #Key([mod], "space", lazy.layout.next(),
+    #    desc="Move window focus to other window"),
 
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
+    Key([mod, "mod4"], "h", lazy.layout.shuffle_left(),
         desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
+    Key([mod, "mod4"], "l", lazy.layout.shuffle_right(),
         desc="Move window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
+    Key([mod, "mod4"], "j", lazy.layout.shuffle_down(),
         desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "mod4"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
@@ -76,9 +76,10 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "c", lazy.spawn("chromium"), desc="Launch Chromium"),
     Key([mod], "f", lazy.spawn("firefox"), desc="Launch Firefox"),
-    Key([mod], "q", lazy.spawn("nautilus"), desc="Launch Nautilus"),
-    Key([mod], 'space', lazy.spawn('rofi -no-config -no-lazy-grab -show drun imodi drun')),
-    
+    Key([mod], "q", lazy.spawn("dolphin"), desc="Launch Dolphin"),
+    Key([mod], 'space', lazy.spawn('rofi -show drun')),
+    Key([mod], "b", lazy.spawn('rofi-bluetooth')),
+
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
