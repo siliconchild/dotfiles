@@ -90,7 +90,7 @@ for i in groups:
         Key([mod], i.name, lazy.group[i.name].toscreen(),
             desc="Switch to group {}".format(i.name)),
         #switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True)),
         # Or, use below if you prefer not to switch to that group.
         # # mod1 + shift + letter of group = move focused window to group
         # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
@@ -99,12 +99,14 @@ for i in groups:
 
 groups.append(
     ScratchPad('scratchpad', [
-        DropDown('term','alacritty',width=0.45,height=0.4,x=0.25,y=0.2)
+        DropDown('term','alacritty',width=0.44, height=0.4, x=0.28, y=0.2),
+        DropDown('term2','alacritty',width=0.44, height=0.35, x=0.28, y=0.2),
     ]),
 )
 
 keys.extend([
-    Key(["control"], "Return", lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key(["control"], "1", lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key(["control"], "2", lazy.group['scratchpad'].dropdown_toggle('term2')),
 ])
 
 layouts = [
