@@ -1,33 +1,6 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 from typing import List  # noqa: F401
-
 from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen,  ScratchPad, DropDown
 from libqtile.lazy import lazy
 
 mod = "mod1"
@@ -35,37 +8,37 @@ terminal = 'alacritty'
 
 keys = [
     # Switch between windows
-    #Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    #Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    #Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    #Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
     #Key([mod], "space", lazy.layout.next(),
     #    desc="Move window focus to other window"),
 
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([mod, "mod4"], "h", lazy.layout.shuffle_left(),
+    Key([mod, "control"], "h", lazy.layout.swap_column_left(),
         desc="Move window to the left"),
-    Key([mod, "mod4"], "l", lazy.layout.shuffle_right(),
+    Key([mod, "control"], "l", lazy.layout.swap_column_right(),
         desc="Move window to the right"),
-    Key([mod, "mod4"], "j", lazy.layout.shuffle_down(),
+    Key([mod, "control"], "j", lazy.layout.shuffle_down(),
         desc="Move window down"),
-    Key([mod, "mod4"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "control"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(),
+    Key([mod, "mod4"], "h", lazy.layout.grow_left(),
         desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(),
+    Key([mod, "mod4"], "l", lazy.layout.grow_right(),
         desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(),
+    Key([mod, "mod4"], "j", lazy.layout.grow_down(),
         desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "b", lazy.layout.shrink()),
-    Key([mod], "m", lazy.layout.maximize(),
+    Key([mod, "mod4"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "mod4"], "b", lazy.layout.shrink()),
+    Key([mod, "mod4"], "m", lazy.layout.maximize(),
         desc="maximize window"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([mod, "shift"], "space", lazy.layout.flip()),
+    Key([mod, "control"], "space", lazy.layout.flip()),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -78,7 +51,6 @@ keys = [
     Key([mod], "f", lazy.spawn("firefox"), desc="Launch Firefox"),
     Key([mod], "q", lazy.spawn("dolphin"), desc="Launch Dolphin"),
     Key([mod], 'space', lazy.spawn('rofi -show drun')),
-    Key([mod], "b", lazy.spawn('rofi-bluetooth')),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -107,26 +79,33 @@ keys = [
 ]
 
 groups = [
-    Group('a', layout='columns'),
+   Group('a', layout='columns'),
     Group('s', layout='monadtall'),
     Group('e', layout='max'),
-    Group('l', layout='columns'),
+    Group('x', layout='columns'), 
 ]
 
 for i in groups:
     keys.extend([
-        # mod1 + letter of group = switch to group
         Key([mod], i.name, lazy.group[i.name].toscreen(),
             desc="Switch to group {}".format(i.name)),
-
-        # mod1 + shift + letter of group = switch to & move focused window to group
+        #switch to & move focused window to group
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(i.name)),
         # Or, use below if you prefer not to switch to that group.
         # # mod1 + shift + letter of group = move focused window to group
         # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
         #     desc="move focused window to group {}".format(i.name)),
     ])
+
+groups.append(
+    ScratchPad('scratchpad', [
+        DropDown('term','alacritty',width=0.45,height=0.4,x=0.25,y=0.2)
+    ]),
+)
+
+keys.extend([
+    Key(["control"], "Return", lazy.group['scratchpad'].dropdown_toggle('term')),
+])
 
 layouts = [
     layout.Columns(margin=6, border_focus='#37474F', border_normal='#111111'),
@@ -176,7 +155,8 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='maketag'),  # gitk
     Match(wm_class='ssh-askpass'),  # ssh-askpass
     Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
+    Match(title='pinentry'),
+    Match(title='Bluetooth')# GPG key password entry
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
