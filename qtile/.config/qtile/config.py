@@ -52,7 +52,7 @@ keys = [
         desc="Toggle between split and unsplit sides of stack"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "c", lazy.spawn("chromium"), desc="Launch Chromium"),
-    Key([mod], "f", lazy.spawn("firefox"), desc="Launch Firefox"),
+    Key([mod], "n", lazy.spawn("firefox"), desc="Launch Firefox"),
     Key([mod], "q", lazy.spawn("dolphin"), desc="Launch Dolphin"),
     Key([mod], 'space', lazy.spawn('rofi -show drun')),
 
