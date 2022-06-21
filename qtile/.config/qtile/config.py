@@ -41,7 +41,7 @@ keys = [
     Key([mod, "mod4"], "b", lazy.layout.shrink()),
     Key([mod, "mod4"], "m", lazy.layout.maximize(),
         desc="maximize window"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, "mod4"], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     Key([mod, "control"], "space", lazy.layout.flip()),
 
     # Toggle between split and unsplit sides of stack.
