@@ -86,7 +86,7 @@ groups = [
    Group('a', layout='columns'),
     Group('s', layout='monadtall'),
     Group('e', layout='max'),
-    Group('x', layout='columns'), 
+    Group('x', layout='monadthreecol'), 
 ]
 
 for i in groups:
@@ -116,11 +116,24 @@ keys.extend([
 layouts = [
     layout.Columns(margin=6, border_focus='#37474F', border_normal='#111111'),
     layout.Max(),
-    # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(border_focus='#222222', margin=6, ratio=0.65, max_ratio=0.65, min_secondary_size=140),
+    layout.MonadTall(
+        border_focus='#222222',
+        margin=6,
+        ratio=0.65,
+        max_ratio=0.65,
+        min_secondary_size=140),
+    layout.MonadThreeCol(
+        min_ratio=0.475,
+        ratio=0.475,
+        max_ratio=0.75,
+        min_secondary_size=40,
+        margin=3, 
+        border_focus='#222222',
+        border_width=1,
+        new_client_position='after_current'),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
