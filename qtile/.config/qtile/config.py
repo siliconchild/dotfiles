@@ -55,6 +55,7 @@ keys = [
     Key([mod], "n", lazy.spawn("firefox"), desc="Launch Firefox"),
     Key([mod], "q", lazy.spawn("dolphin"), desc="Launch Dolphin"),
     Key([mod], 'space', lazy.spawn('rofi -show drun')),
+    Key([mod], "p", lazy.spawn('/home/alwin/.local/bin/batterystatus.sh')),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
@@ -114,14 +115,14 @@ keys.extend([
 ])
 
 layouts = [
-    layout.Columns(margin=6, border_focus='#37474F', border_normal='#111111'),
+    layout.Columns(margin=4, border_focus='#37474F', border_normal='#111111'),
     layout.Max(),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     layout.MonadTall(
         border_focus='#222222',
-        margin=6,
+        margin=4,
         ratio=0.65,
         max_ratio=0.65,
         min_secondary_size=140),
@@ -130,7 +131,7 @@ layouts = [
         ratio=0.475,
         max_ratio=0.75,
         min_secondary_size=40,
-        margin=3, 
+        margin=4, 
         border_focus='#222222',
         border_width=1,
         new_client_position='after_current'),
