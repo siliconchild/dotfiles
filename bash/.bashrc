@@ -55,7 +55,7 @@ wifi () {
 }
 
 #[ x$DISPLAY != x ] && pfetch
-eval "$(zoxide init bash)"
+#eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 
 # The next line updates PATH for Netlify's Git Credential Helper.
