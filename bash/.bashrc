@@ -15,6 +15,7 @@ export SYSTEMD_EDITOR="/usr/bin/nvim"
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export PATH="$PATH:$GEM_HOME/bin"
 export PATH="${PATH}:/home/alwin/.node_modules/bin"
+export PATH="${PATH}:/home/alwin/.local/bin"
 export npm_config_prefix=~/.node_modules
 export PF_INFO="ascii title os kernel uptime pkgs wm memory"
 export HISTCONTROL=ignoredups
