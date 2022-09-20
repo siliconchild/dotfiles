@@ -55,6 +55,7 @@ keys = [
     Key([mod], "n", lazy.spawn("firefox"), desc="Launch Firefox"),
     Key([mod], "q", lazy.spawn("dolphin"), desc="Launch Dolphin"),
     Key([mod], 'space', lazy.spawn('rofi -show drun')),
+    Key([mod, "control"], "p", lazy.spawn('rofi -no-fixed-num-lines -modi "clipboard:greenclip print" -show clipboard')),
     Key([mod], "p", lazy.spawn('/home/alwin/.local/bin/batterystatus.sh')),
 
     # Toggle between different layouts as defined below
