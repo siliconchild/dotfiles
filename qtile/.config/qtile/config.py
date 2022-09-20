@@ -115,25 +115,30 @@ keys.extend([
 ])
 
 layouts = [
-    layout.Columns(margin=4, border_focus='#37474F', border_normal='#111111'),
+    layout.Columns(
+        margin=4,
+        border_focus='#7B1BCF',
+        border_width=3,
+        border_normal='#111111'),
     layout.Max(),
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     layout.MonadTall(
-        border_focus='#222222',
+        border_focus='#7B1BCF',
+        border_width=3,
         margin=4,
         ratio=0.65,
         max_ratio=0.65,
         min_secondary_size=140),
     layout.MonadThreeCol(
+        border_width=3,
+        border_focus='#7B1BCF',
         min_ratio=0.475,
         ratio=0.475,
         max_ratio=0.75,
         min_secondary_size=40,
         margin=4, 
-        border_focus='#222222',
-        border_width=1,
         new_client_position='after_current'),
     # layout.MonadWide(),
     # layout.RatioTile(),
@@ -167,20 +172,23 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
+floating_layout = layout.Floating(
+border_width=0,
+float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
     Match(wm_class='confirmreset'),  # gitk
     Match(wm_class='makebranch'),  # gitk
     Match(wm_class='maketag'),  # gitk
     Match(wm_class='ssh-askpass'),  # ssh-askpass
+    Match(wm_class='gcolor3'),  # color-picker
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),
-    Match(title='Bluetooth')# GPG key password entry
+    Match(title='Bluetooth'),# Bluetooth
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
-reconfigure_screens = True
+reconfigure_screens = False
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
