@@ -119,6 +119,7 @@ layouts = [
         margin=4,
         border_focus='#7B1BCF',
         border_width=3,
+        border_on_single=False,
         border_normal='#111111'),
     layout.Max(),
     # layout.Stack(num_stacks=2),
@@ -127,6 +128,7 @@ layouts = [
     layout.MonadTall(
         border_focus='#7B1BCF',
         border_width=3,
+        single_border_width=0,
         margin=4,
         ratio=0.65,
         max_ratio=0.65,
@@ -134,6 +136,7 @@ layouts = [
     layout.MonadThreeCol(
         border_width=3,
         border_focus='#7B1BCF',
+        single_border_width=0,
         min_ratio=0.475,
         ratio=0.475,
         max_ratio=0.75,
