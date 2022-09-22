@@ -89,6 +89,8 @@ Plug 'machakann/vim-sandwich'
 Plug 'morhetz/gruvbox'
 " Color Highlighting
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" Fancy Vim Startup Screen
+Plug 'mhinz/vim-startify'
 "" Initialize plugin system
 call plug#end()
 
